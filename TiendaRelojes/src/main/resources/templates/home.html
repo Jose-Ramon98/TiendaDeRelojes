@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}">Insert title here</title>
+
+<style>
+   /* Estilos CSS para el navbar */
+    ul.navbar {
+      list-style-type: none;
+      padding: 740;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li.nav-item {
+      float: left;
+    } li.nav-item:last-child {
+      float: right;
+      margin-right: 5%;
+    }
+    
+
+    li.nav-item a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li.nav-item a:hover {
+      background-color: #111;
+    }
+.center {
+    text-align: center;
+}
+
+body {
+ background-color: black;
+  color: white;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    width: 60%;
+    height:60%;
+    object-fit: cover;
+}
+</style>
+
+
+
+ <ul class="navbar">
+    <li class="nav-item"><a href="/inicio" method="POST">Inicio</a></li>
+    <li class="nav-item"><a href="#">Acerca</a></li>
+    <li class="nav-item"><a href="#">Servicios</a></li>
+    <li class="nav-item"><a href="#">Comprar</a></li>
+  </ul>
+</head>
+<body>
+<h1 th:text="${titulo}" class="center"></h1>
+
+<div class="image-container">
+    <img src="imagen1.jpg" />
+</div>
+
+</body>
+</html>
