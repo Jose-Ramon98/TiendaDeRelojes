@@ -21,6 +21,9 @@ public interface IRelojes {
 	
 	
 	public Relojes findOne(Integer id);
-	
+
+	public List<Relojes> findByMarca(String marca);
+
+
 	
 }

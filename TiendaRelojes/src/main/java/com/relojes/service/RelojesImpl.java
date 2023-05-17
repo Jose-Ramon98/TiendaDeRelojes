@@ -55,13 +55,21 @@ public class RelojesImpl implements IRelojes{
 		
 		return relojesDao.findById(id).orElse(null);//no es orElseThrow
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Relojes> findByMarca(String marca) {
+	    return relojesDao.findByMarca(marca);
+	}
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
