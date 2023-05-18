@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado de vacantes</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+
+</head>
+
+<style>
+body {
+	background-color: black;
+	color: white;
+}
+
+
+#carouselExampleControls {
+	margin-bottom: 180px;
+}
+
+table td, table th {
+	color: white;
+}
+form.float-right {
+  margin-right: 140px;
+}form.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+h1 {
+	text-align: center;
+}
+</style>
+
+
+<body>
+<!-- para a�adir la imagen, en este caso la imagen se llama logo, si se llamase cabra seria cabra.png-->
+
+	<h1>Listado de relojes</h1>
+	<h5 style="text-align: center; margin-bottom: 80px;">Para poder crear, editar o eliminar un producto, debes ir al inicio (log in) y registrarte. Usuario: admin /// Contraseña: 12345</h5>
+
+
+	<table class="table table-striped table-bordered table-hover">
+  
+	<form action="/reloj/ordenar" method="get"  class="float-right">
+    <label for="orden">Ordenar por precio:</label>
+    <select name="orden" id="orden">
+        <option value="ascendente">Menor a mayor</option>
+        <option value="descendente">Mayor a menor</option>
+    </select>
+    <button type="submit">Ordenar</button>
+</form>
+    
+<form action="/reloj/filtrar" method="get" class="center">
+    <label for="marca">Buscar por marca:</label>
+    <input type="text" name="marca" id="marca"/>
+    <button type="submit">Buscar</button>
+</form>
+  
+		<tr>
+	
+			
+			<th>Nombre</th>
+			<th>Marca</th>			
+			<th>Precio</th>
+			
+			
+			
+		</tr>
+		<!-- Antes he usado "tmpmp"como variable temporal ahora uso variable y lo podria llamar camion, pero entonces donde pone vacante en lo demas deberia poner camion-->
+		<!-- Todo se llama variable , pero est� definida aqu� no en en el main/java sino en el HTML-->
+		<tr th:each="vacantes:${relojes}">
+		
+			
+			
+			<td th:text="${vacantes.marca}"></td>
+			<td th:text="${vacantes.modelo}"></td>
+			<td th:text="${vacantes.precio}"></td>
+			
+			
+			
+		</tr>
+
+	</table>
+	
+	
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+
+</body>
+</html>
