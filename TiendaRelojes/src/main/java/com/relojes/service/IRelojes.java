@@ -2,6 +2,8 @@ package com.relojes.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.relojes.Entity.Relojes;
@@ -10,6 +12,8 @@ import com.relojes.Entity.Relojes;
 public interface IRelojes {
 
 	public List<Relojes>  findAll();
+	
+	public Page<Relojes>  findAll(Pageable pageable);
 	
 	public void save(Relojes relojes);
 	

@@ -4,6 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.relojes.Controller.util.paginator.PageRender;
 import com.relojes.Entity.Relojes;
 import com.relojes.service.IRelojes;
 
@@ -34,10 +38,16 @@ public class RelojController {
 	
 	@GetMapping("/inicio")
 	@PostMapping("/inicio")
-	public String mostrarRelojes(Model model) {
+	//para que se muestren todos los productos desde el principio
+	public String mostrarRelojes(@RequestParam (name="page",defaultValue="0") int page, Model model) {
 		
-		List<Relojes> lista = relojes.findAll();
+		
+		Pageable pageRequest = PageRequest.of(page, 5);
+		
+		Page<Relojes> lista =relojes.findAll(pageRequest);
+		PageRender<Relojes> pageRender = new PageRender<>("/inicio", lista);		
 		model.addAttribute("relojes", lista);
+		model.addAttribute("page", pageRender);
 		return "inicio";
 		
 	}
@@ -98,15 +108,32 @@ public class RelojController {
 	        lista.sort(Comparator.comparing(Relojes::getPrecio));
 	    }
 	    model.addAttribute("relojes", lista);
-	    return "inicio";
+	    return "descripcion";
 	}
 	
 	@GetMapping("/reloj/filtrar")
 	public String filtrarRelojesPorMarca(@RequestParam("marca") String marca, Model model) {
 	    List<Relojes> lista = relojes.findByMarca(marca);
 	    model.addAttribute("relojes", lista);
-	    return "inicio";
+	    
+	    return "descripcion";
 	}
+	
+
+	@GetMapping("/descripcion")
+	@PostMapping("/descripcion")
+	public String mostrarTabla(Model model){
+	
+		
+		
+		List<Relojes> lista = relojes.findAll();
+		
+		
+		model.addAttribute("relojes", lista);
+		return "descripcion";
+		
+	}
+	
 	
 }
 	

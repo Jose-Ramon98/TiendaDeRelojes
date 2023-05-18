@@ -3,6 +3,8 @@ package com.relojes.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +21,7 @@ public class RelojesImpl implements IRelojes{
 	@Autowired
 	private RelojesDao relojesDao;
 
-	
-	
-	@Override
-	@Transactional(readOnly = true)
-	public List<Relojes> findAll() {
-		
-		return (List<Relojes>) relojesDao.findAll(); 
-	}
+
 
 	@Override
 	@Transactional
@@ -60,6 +55,19 @@ public class RelojesImpl implements IRelojes{
 	@Transactional(readOnly = true)
 	public List<Relojes> findByMarca(String marca) {
 	    return relojesDao.findByMarca(marca);
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Relojes> findAll() {
+		
+		return (List<Relojes>) relojesDao.findAll(); 
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Relojes> findAll(Pageable pageable) {
+	
+		return (Page<Relojes>) relojesDao.findAll(pageable);
 	}
 	
 }

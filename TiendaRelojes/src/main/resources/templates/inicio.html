@@ -41,25 +41,14 @@ h1 {
 </style>
 	<h1>Productos ofertados</h1>
 
-
 <a href="/reloj/nuevo" class="btn btn-primary">Crear nuevo Reloj</a>
 
-<form action="/reloj/ordenar" method="get"  class="float-right">
-    <label for="orden">Ordenar por precio:</label>
-    <select name="orden" id="orden">
-        <option value="ascendente">Menor a mayor</option>
-        <option value="descendente">Mayor a menor</option>
-    </select>
-    <button type="submit">Ordenar</button>
-</form>
 
 
-<form action="/reloj/filtrar" method="get" class="center">
-    <label for="marca">Buscar por marca:</label>
-    <input type="text" name="marca" id="marca"/>
-    <button type="submit">Buscar</button>
-   
-</form>
+
+
+
+
 
 
 
@@ -79,9 +68,9 @@ h1 {
 			
 			<td th:text="${reloj.marca}"></td>
 			<td th:text="${reloj.modelo}"></td>
-			<td th:text="${reloj.precio} + ' ' + ' € '"></td>
+			<td th:text="${reloj.precio} + ' ' + 'euros'"></td>
 		<td>	
-			<form th:action="@{/reloj/{id}/eliminar(id=${reloj.id})}" method="POST" onclick="return confirm('�Quieres eliminar el Reloj?')">
+			<form th:action="@{/reloj/{id}/eliminar(id=${reloj.id})}" method="POST" onclick="return confirm('¿Quieres eliminar el Reloj?')">
     <input type="hidden" name="_method" value="DELETE"/>
     <button type="submit" class="btn btn-danger">Eliminar</button>
     
@@ -91,8 +80,13 @@ h1 {
     </td>
 	
 		</tr>	
-
 	</table>
+	
+	
+<nav th:replace="paginator-nav :: paginator"></nav> 
+	
+	
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
