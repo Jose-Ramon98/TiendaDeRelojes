@@ -50,7 +50,7 @@ public class SecurityAdapter  extends WebSecurityConfigurerAdapter{
 		UserBuilder users = User.builder().passwordEncoder(encoder::encode);
 		
 		builder.inMemoryAuthentication()//Este es el ususario y contraseña literal, para el usuario admin, aqui esta sin ecriptar
-		.withUser(users.username("admin").password("12345").roles("ADMIN","USER")).//voy a tener 2 roles
+		.withUser(users.username("Jose").password("Europa1415.").roles("ADMIN","USER")).//voy a tener 2 roles
 		 withUser(users.username("andres").password("12345").roles("USER"));
 
 		}
